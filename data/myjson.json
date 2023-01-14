@@ -1,0 +1,30 @@
+      {
+
+        "ProductName": "Hollister Backyard Sweatshirt",
+        "Sku": "MH05",
+        "Description": "Backyard Sweatshirt Puffy thick from hood to hem",
+        "ShortDescription": "Relaxed fit",
+        "Price": "Relaxed fit",
+
+        "expectedSearchResult": "1 item were found using the following search criteria",
+        "expectedSearchResult3": "Product Name:",
+        "expectedSearchResult2": "SKU:",
+
+        "item add to cart": "You added Argus All-Weather Tank to your shopping cart.",
+        "check out url": "https://magento.softwaretestingboard.com/checkout/#shipping",
+        "empty cart": "You have no items in your shopping cart.",
+        "page head banner" :"This is a demo store. No orders will be fulfilled.",
+
+        "title whats new" : "What's New",
+        "new women": "NEW IN WOMEN'S",
+
+        "order id": "000014623",
+        "last name": "demouser90",
+        "email": "onethug@mail.com",
+        "zip code": "06000",
+
+        "incorrect data": "You entered incorrect data. Please try again.",
+        "latest title": "Luma's Latest"
+
+      }
+

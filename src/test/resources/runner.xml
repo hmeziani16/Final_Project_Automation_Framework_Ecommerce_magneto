@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Luma store website regression">
+    <parameter name="useCloudEnv" value="false"></parameter>
+
+    <parameter name="envName" value="browserstack"></parameter>
+    <parameter name="osVersion" value="11"></parameter>
+    <parameter name="browserVersion" value="101"></parameter>
+    <parameter name="os" value="windows"></parameter>
+
+    <parameter name="browserName" value="chrome"></parameter>
+    <parameter name="url" value="https://magento.softwaretestingboard.com/"></parameter>
+    <test name="All Tests">
+        <classes>
+            <class name="org.example.TestCart"></class>
+            <class name="org.example.TestOrderAndReturns"></class>
+            <class name="org.example.TestHomePage"></class>
+            <class name="org.example.TestInitialPage"></class>
+            <class name="org.example.TestLogin"></class>
+            <class name="org.example.TestWhatsNew"></class>
+            <class name="org.example.TestFilterFunction"></class>
+            <class name="org.example.TestAdvancedSearchPage"></class>
+
+        </classes>
+    </test>
+</suite>
