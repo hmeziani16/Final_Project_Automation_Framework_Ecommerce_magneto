@@ -29,11 +29,11 @@ Temporary Items
 
 #ItelliJ
 .idea/
-target/
-out/
+
+
 test-output/
-Extent-Report/
+
 *.iml
-*/Extent-Report/
+
 
 screenshots/
