@@ -13,15 +13,14 @@
     <parameter name="url" value="https://magento.softwaretestingboard.com/"></parameter>
     <test name="All Tests">
         <classes>
-            <class name="org.example.TestCart"></class>
-            <class name="org.example.TestOrderAndReturns"></class>
+           <class name="org.example.TestCart"></class>
             <class name="org.example.TestHomePage"></class>
             <class name="org.example.TestInitialPage"></class>
             <class name="org.example.TestLogin"></class>
             <class name="org.example.TestWhatsNew"></class>
             <class name="org.example.TestFilterFunction"></class>
             <class name="org.example.TestAdvancedSearchPage"></class>
-
+            <class name="org.example.TestOrderAndReturns"></class>
         </classes>
     </test>
 </suite>

@@ -1,6 +1,7 @@
       {
 
         "ProductName": "Hollister Backyard Sweatshirt",
+         "ProductName2": "Argus All-Weather Tank",
         "Sku": "MH05",
         "Description": "Backyard Sweatshirt Puffy thick from hood to hem",
         "ShortDescription": "Relaxed fit",
@@ -22,6 +23,7 @@
         "last name": "demouser90",
         "email": "onethug@mail.com",
         "zip code": "06000",
+        "correct zip code": "060000",
 
         "incorrect data": "You entered incorrect data. Please try again.",
         "latest title": "Luma's Latest"

@@ -66,7 +66,7 @@ public class OrderAndReturnsPage extends CommonAPI {
     @FindBy (xpath="//*[@id=\"maincontent\"]/div[3]/div/ul/li/strong")
     WebElement orderInfo;
 
-    @FindBy (xpath="//*[@id=\"order-item-row-36768\"]/td[1]/strong")
+    @FindBy (xpath="//strong[@class='product name product-item-name']")
     WebElement orderedProductName;
 
     @FindBy  (xpath="//*[@class='message-error error message']")
@@ -162,17 +162,14 @@ public class OrderAndReturnsPage extends CommonAPI {
     }
 
     public String getOrderedProductName (){
-       String name = null;
-        return   name = getWebElementText(orderedProductName);
+
+       return getWebElementText(orderedProductName);
     }
 
 
     public String getMessageError (){
 
-        String message = null;
-
-       return message = getWebElementText(messageErrorIncorrectData);
-
+        return getWebElementText(messageErrorIncorrectData);
     }
 
 

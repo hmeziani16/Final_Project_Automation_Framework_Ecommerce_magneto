@@ -54,16 +54,16 @@ public class TestOrderAndReturns extends CommonAPI {
         Assert.assertTrue( orderAndReturns.orderInfoIsDisplayed());
         Assert.assertTrue( orderAndReturns.orderedProductNameIsDisplayed());
 
-        String itemExpected = (String) jsonReader.getDataFile("product name");
+        String itemExpected = (String) jsonReader.getDataFile("ProductName2");
         String itemActual = orderAndReturns.getOrderedProductName();
+        Assert.assertEquals(itemExpected, itemActual);
         LOG.info("Product ordered lately found successfully");
 
     }
     @Test
-    public void testOrderAndReturnsSearchItemWithZipCode()  {
+    public void testOrderAndReturnsSearchItemWithIncorrectData()  {
 
         OrderAndReturnsPage orderAndReturns = new OrderAndReturnsPage(driver);
-
 
         orderAndReturns.clickOrderAndReturnsPage();
 
@@ -87,7 +87,6 @@ public class TestOrderAndReturns extends CommonAPI {
         String zipCode = (String) jsonReader.getDataFile("zip code");
         orderAndReturns.typeZipCode(zipCode);
 
-
         orderAndReturns.clickOnContinue();
 
         String messageErrorActual = (String) jsonReader.getDataFile("incorrect data");
@@ -97,20 +96,50 @@ public class TestOrderAndReturns extends CommonAPI {
 
         LOG.info("can't find item with billing zip code error message popup success'");
 
-        /*LOG.info("landing in order view");
+
+    }
+
+    @Test
+    public void testOrderAndReturnsSearchItemWithZipCode (){
+        OrderAndReturnsPage orderAndReturns = new OrderAndReturnsPage(driver);
+
+        orderAndReturns.clickOrderAndReturnsPage();
+
+        Assert.assertTrue(orderAndReturns.OrderAndReturnsPageTitleDisplayed());
+        Assert.assertTrue(orderAndReturns.titleFormIsDisplayed());
+
+        Assert.assertTrue(orderAndReturns.orderTitleIsDisplayed());
+        String orderId = (String) jsonReader.getDataFile("order id");
+        orderAndReturns.typeOrderId(orderId);
+
+        Assert.assertTrue(orderAndReturns.billingLastnameIsDisplayed());
+        String billingLastName = (String) jsonReader.getDataFile("last name");
+        orderAndReturns.typeBillingLastName(billingLastName);
+
+        Assert.assertTrue( orderAndReturns.findOrderByIsDisplayed());
+
+        orderAndReturns.filterOrderBy("ZIP Code");
+
+        Assert.assertTrue( orderAndReturns.zipCodeLabelIsDisplayed());
+
+        String zipCode = (String) jsonReader.getDataFile("correct zip code");
+        orderAndReturns.typeZipCode(zipCode);
+
+        orderAndReturns.clickOnContinue();
+
+        LOG.info("landing in order view");
 
         Assert.assertTrue(orderAndReturns.orderViewTitleIsDisplayed());
         Assert.assertTrue( orderAndReturns.orderStatusIsDisplayed());
         Assert.assertTrue( orderAndReturns.orderInfoIsDisplayed());
         Assert.assertTrue( orderAndReturns.orderedProductNameIsDisplayed());
 
-        String itemExpected = (String) jsonReader.getDataFile("product name");
+        String itemExpected = (String) jsonReader.getDataFile("ProductName2");
         String itemActual = orderAndReturns.getOrderedProductName();
-        LOG.info("Product ordered lately found successfully");*/
+        Assert.assertEquals(itemExpected, itemActual);
+        LOG.info("Product ordered lately found successfully");
 
     }
-
-
 
 
 }
