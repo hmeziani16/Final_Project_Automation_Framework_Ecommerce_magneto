@@ -249,13 +249,14 @@ public class TestCart extends CommonAPI {
 
         //land on shipping
 
-        waitFor(1);
+
 
         String urlCheckout = (String) jsonReader.getDataFile("check out url");
-
-        LOG.info("current url: " + cartPage.getShippingPageUrl(driver));
-        Assert.assertEquals(urlCheckout, cartPage.getShippingPageUrl(driver));
+        String getUrl = cartPage.getShippingPageUrl(driver);
+        LOG.info("current url: " +getUrl );
         waitFor(2);
+        Assert.assertEquals(urlCheckout, getUrl);
+
         LOG.info("url validation success");
 
         waitFor(3);
