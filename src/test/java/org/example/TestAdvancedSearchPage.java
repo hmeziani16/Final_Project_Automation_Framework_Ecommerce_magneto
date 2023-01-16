@@ -26,8 +26,6 @@ public class TestAdvancedSearchPage extends CommonAPI {
         AdvancedSearchPage advancedSearchPage = new AdvancedSearchPage (driver);
         HomePage homePage = new HomePage(driver);
 
-
-
         //check user land on the right page
         String expected = excelReader.getDataForGivenHeaderAndKey("key", "home page header");
         String actual = getPageTitle();
@@ -88,7 +86,7 @@ public class TestAdvancedSearchPage extends CommonAPI {
 
     }
 
-    @Test
+   @Test
     public void testSearchWithNameAndSku ()  {
 
         AdvancedSearchPage advancedSearchPage = new AdvancedSearchPage (driver);
@@ -157,6 +155,82 @@ public class TestAdvancedSearchPage extends CommonAPI {
         Assert.assertEquals(expectedSearchResult2, actualSearchResult2);
 
         LOG.info("search using SKU success");
+
+    }
+
+    @Test
+    public void testSearchWithPriceRange ()  {
+
+        AdvancedSearchPage advancedSearchPage = new AdvancedSearchPage (driver);
+        HomePage homePage = new HomePage(driver);
+
+
+        //check user land on the right page
+        String expected = excelReader.getDataForGivenHeaderAndKey("key", "home page header");
+        String actual = getPageTitle();
+        String expected1 = excelReader.getDataForGivenHeaderAndKey("key", "home page banner");
+        String actual1 = homePage.onLandingPage();
+
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected1, actual1);
+
+        Assert.assertEquals(expected, actual);
+        LOG.info("landing page validation success");
+
+
+        advancedSearchPage.clickAdvancedSearchPage();
+
+        Assert.assertTrue(advancedSearchPage.advancedSearchPageTitleDisplayed());
+
+        advancedSearchPage.searchSettingsIsDisplayed();
+
+        Assert.assertTrue(advancedSearchPage.nameLabelIsDisplayed());
+        String productName = (String) jsonReader.getDataFile("ProductName3");
+        advancedSearchPage.typeNameProduct(productName);
+
+
+
+        Assert.assertTrue(advancedSearchPage.skuLabelIsDisplayed());
+
+        advancedSearchPage.typeSkuField("");
+
+        Assert.assertTrue(advancedSearchPage.descriptionLabelIsDisplayed());
+
+        advancedSearchPage.typeDescriptionField("");
+
+        Assert.assertTrue(advancedSearchPage.shortDescriptionLabelIsDisplayed());
+
+        advancedSearchPage.typeShortDescriptionField("");
+
+        Assert.assertTrue(advancedSearchPage.priceLabelIsDisplayed());
+        String price1 =  (String) jsonReader.getDataFile("price1");
+        String price2=  (String) jsonReader.getDataFile("price2");
+        advancedSearchPage.typePrice(price1);
+        advancedSearchPage.typePrice2(price2);
+
+        advancedSearchPage.clickOnSearch();
+
+        waitFor(2);
+
+        String expectedSearchResult =  (String) jsonReader.getDataFile("expectedSearchResult4");
+        String actualSearchResult = advancedSearchPage.getSearchResults();
+        Assert.assertEquals(expectedSearchResult, actualSearchResult);
+
+        LOG.info("21 items were found using the following search criteria");
+
+        String expectedSearchResult3 =  (String) jsonReader.getDataFile("expectedSearchResult3");
+        String actualSearchResult3 = advancedSearchPage.getSearchResults2();
+        Assert.assertEquals(expectedSearchResult3, actualSearchResult3);
+
+        LOG.info("search using product name success");
+
+        String expectedSearchResult2 = (String) jsonReader.getDataFile("expectedSearchResult5");
+        String actualSearchResult2 = advancedSearchPage.getSearchResults3();
+        Assert.assertEquals(expectedSearchResult2, actualSearchResult2);
+
+        LOG.info("search using price rang  success");
+
+
 
     }
 }

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.base.CommonAPI;
 import org.example.pages.CartPage;
+import org.example.pages.FilterFunctionPage;
 import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
 import org.example.utilty.ExcelReader;
@@ -21,17 +22,16 @@ public class TestCart extends CommonAPI {
     String username = Utility.decode(prop.getProperty("username"));
     String password = Utility.decode(prop.getProperty("password"));
 
-    ExcelReader excelReader = new ExcelReader(Utility.currentDir+ File.separator+"data"+File.separator+"test-data.xlsx", "data");
+    ExcelReader excelReader = new ExcelReader(Utility.currentDir + File.separator + "data" + File.separator + "test-data.xlsx", "data");
 
     JsonReader jsonReader = new JsonReader();
 
     @Test
-    public void testCart(){
+    public void testCartLogo() {
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
 
         LoginPage loginPage = new LoginPage(driver);
-
 
 
         //check user land on the right page
@@ -51,7 +51,7 @@ public class TestCart extends CommonAPI {
     }
 
     @Test
-    public void testEmptyCart(){
+    public void testEmptyCart() {
 
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
@@ -83,8 +83,9 @@ public class TestCart extends CommonAPI {
 
 
     }
+
     @Test
-    public void testAddToCart(){
+    public void testAddToCart() {
 
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
@@ -134,7 +135,7 @@ public class TestCart extends CommonAPI {
     }
 
     @Test
-    public void testCartNotification (){
+    public void testCartNotification() {
 
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
@@ -189,8 +190,9 @@ public class TestCart extends CommonAPI {
         LOG.info("item count popup on cart icon successfully");
 
     }
+
     @Test
-    public void testPurchaseItem (){
+    public void testPurchaseItem() {
 
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
@@ -253,6 +255,7 @@ public class TestCart extends CommonAPI {
 
         LOG.info("current url: " + cartPage.getShippingPageUrl(driver));
         Assert.assertEquals(urlCheckout, cartPage.getShippingPageUrl(driver));
+        waitFor(2);
         LOG.info("url validation success");
 
         waitFor(3);
@@ -271,7 +274,7 @@ public class TestCart extends CommonAPI {
 
         LOG.info("login with username and password success");
 
-         //filling shipping details on form for new account
+        //filling shipping details on form for new account
 
         //cartPage.typeShippingDetailsFirstName("lklk");
         //cartPage.typeShippingDetailsLastName("oklk");
@@ -294,6 +297,76 @@ public class TestCart extends CommonAPI {
         cartPage.clickOnOrderBtn();
 
         LOG.info("item order ok");
+
+    }
+
+    @Test
+    public void testCompareTwoProducts() {
+
+        HomePage homePage = new HomePage(driver);
+        CartPage cartPage = new CartPage(driver);
+        FilterFunctionPage filterFunctionPage = new FilterFunctionPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+
+        //check user land on the right page
+        String expected = excelReader.getDataForGivenHeaderAndKey("key", "home page header");
+        String actual = getPageTitle();
+        String expected1 = excelReader.getDataForGivenHeaderAndKey("key", "home page banner");
+        String actual1 = homePage.onLandingPage();
+
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected1, actual1);
+        LOG.info("landing page validation success");
+
+        filterFunctionPage.mainPageIsDisplayed();
+        cartPage.clickOnMenCategory();
+        filterFunctionPage.menPageTitleIsDisplayed();
+
+        LOG.info("landing in men's category");
+        waitFor(5);
+        filterFunctionPage.clickOnShortForMen();
+        filterFunctionPage.shortForMenPageTitleIsDisplayed();
+        LOG.info("landing in men's short page");
+
+        //  waitFor(5);
+
+        cartPage.testHoverOnShort1Card(driver);
+        waitFor(1);
+        cartPage.clickOnCompareBtn1();
+        String expectedMessage1 = (String) jsonReader.getDataFile("product1");
+        waitFor(5);
+        String actualMessage1 = cartPage.getMessageAddToCompareList1();
+        waitFor(5);
+        Assert.assertEquals(expectedMessage1, actualMessage1);
+
+        // waitFor(2);
+        cartPage.testHoverOnShort2Card(driver);
+        //  waitFor(2);
+        cartPage.clickOnCompareBtn2();
+        String expectedMessage2 = (String) jsonReader.getDataFile("product2");
+        waitFor(5);
+        String actualMessage2 = cartPage.getMessageAddToCompareList2();
+        waitFor(5);
+        Assert.assertEquals(expectedMessage2, actualMessage2);
+
+
+        cartPage.clickOnCompareBtn();
+        Assert.assertTrue(cartPage.titlePageIsDisplayed());
+
+        String expectedCompareProductName1 = (String) jsonReader.getDataFile("short2");
+        String actualCompareProductName1 = cartPage.getCompareProductName1();
+        Assert.assertEquals(expectedCompareProductName1, actualCompareProductName1);
+
+        LOG.info("short1 name as expected");
+
+        String expectedCompareProductName2 = (String) jsonReader.getDataFile("short1");
+        String actualCompareProductName2 = cartPage.getCompareProductName2();
+        Assert.assertEquals(expectedCompareProductName2, actualCompareProductName2);
+
+        LOG.info("short2 name as expected");
+
+        LOG.info("short1 and short 2 are displayed in the compare page");
+
 
     }
 }

@@ -99,7 +99,35 @@ public class CartPage extends CommonAPI {
     @FindBy (xpath="//input[@name='ko_unique_1']")
     WebElement radioBtn;
 
+    @FindBy (xpath="//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[3]/div/div[2]/a[2]")
+    WebElement compareButtonProduct1;
 
+    @FindBy (xpath="//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[2]/div/div/div[3]/div/div[2]/a[2]")
+    WebElement compareButtonProduct2;
+
+    @FindBy (xpath="//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']")
+    WebElement product1AddToCompareList;
+
+    @FindBy (xpath="//*[@id=\"maincontent\"]/div[2]/div[2]")
+    WebElement product2AddToCompareList;
+
+    @FindBy (xpath="//*[@id=\"maincontent\"]/div[3]/div[3]/div[1]/div[2]/div/div[1]/a")
+    WebElement compareButton;
+
+    @FindBy (xpath="//*[@id=\"maincontent\"]/div[1]/h1/span")
+    WebElement comparePageTitle;
+
+    @FindBy (xpath="//*[@id=\"product-comparison\"]/tbody[1]/tr/td[1]/strong")
+    WebElement compareProductName1;
+
+    @FindBy (xpath="//*[@id='maincontent']/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[2]/div[2]/div")
+    WebElement compareProductName1Hover;
+
+    @FindBy (xpath="//*[@id=\"product-comparison\"]/tbody[1]/tr/td[2]/strong")
+    WebElement compareProductName2;
+
+    @FindBy (xpath="//*[@id='maincontent']/div[3]/div[1]/div[3]/ol/li[2]/div/div/div[2]/div[2]/div")
+    WebElement compareProductName2Hover;
 
     public boolean cartIsDisplayed () {
         LOG.info("cart is displayed");
@@ -263,7 +291,45 @@ public class CartPage extends CommonAPI {
     public void clickOnRadioBtn() {
         clickOn(radioBtn);
     }
+    public void clickOnCompareBtn1() {
+        clickOn(compareButtonProduct1);
+    }
+    public void clickOnCompareBtn2() {
+        clickOn(compareButtonProduct2);
+    }
 
+    public void clickOnCompareBtn() {
+        clickOn(compareButton);
+    }
+
+    public String getMessageAddToCompareList1(){
+        return getWebElementText(product1AddToCompareList);
+    }
+
+    public String getMessageAddToCompareList2(){
+
+        return getWebElementText(product2AddToCompareList);
+    }
+
+    public String getCompareProductName1(){
+        return getWebElementText(compareProductName1);
+    }
+
+    public String getCompareProductName2(){
+        return getWebElementText(compareProductName2);
+    }
+
+    public boolean titlePageIsDisplayed () {
+        LOG.info("compare page title is displayed");
+        return isDisplayed(comparePageTitle);
+    }
+
+    public void testHoverOnShort1Card (WebDriver driver) {
+        hoverOver(driver,compareProductName1Hover);
+    }
+    public void testHoverOnShort2Card (WebDriver driver) {
+        hoverOver(driver,compareProductName2Hover);
+    }
 
 
 

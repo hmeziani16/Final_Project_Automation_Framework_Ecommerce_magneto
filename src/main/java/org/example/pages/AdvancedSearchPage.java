@@ -139,6 +139,10 @@ public class AdvancedSearchPage extends CommonAPI {
         type(priceField,price1);
 
     }
+    public void typePrice2 (String price2) {
+        type(priceField2,price2);
+
+    }
 
     public void clickOnSearch(){
         LOG.info("Click on search");
