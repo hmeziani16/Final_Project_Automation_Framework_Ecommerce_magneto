@@ -20,7 +20,7 @@ public class AdvancedSearchPage extends CommonAPI {
     WebElement linkToAdvancedSearchPage;
     @FindBy (xpath="//span[@class='base']")
     WebElement advancedSearchPageTitle;
-    @FindBy (xpath="//*[@id='form-validate']/fieldset/legend/span")
+    @FindBy (xpath="//legend[@class=\"legend\"]")
     WebElement searchSettings;
 
     @FindBy (xpath="//label[@for='name']")
